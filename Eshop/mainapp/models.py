@@ -8,3 +8,6 @@ class CarouselImage(models.Model):
     caption = models.TextField(max_length=400)
     link = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
+
+    def ___str___(self):
+        return f"Carousel Image "
