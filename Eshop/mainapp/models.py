@@ -10,4 +10,6 @@ class CarouselImage(models.Model):
     active = models.BooleanField(default=True)
 
     def ___str___(self):
-        return f"Carousel Image "
+        return f"Carousel Image:{self.title}"
+    
+    
