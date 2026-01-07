@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+product card
+{% endblock %}
+
+<!-- about apge -->
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row mt-2 g-2 ">
+
+        {% for product in products %}
+        {% include 'product/includes/productCard.html'%}
+        {% endfor %}
+    </div>
+
+</div>
+
+
+
+{% endblock %}
