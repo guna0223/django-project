@@ -1,13 +1,45 @@
 {% extends 'base/base.html' %}
 
-
 {% block title %}
-about
+About
 {% endblock %}
 
-<!-- about apge -->
 {% block content %}
-<br>
-this is about page
-current page:{{current_page}}
+<section class="about-modern">
+    <div class="about-glass">
+
+        <span class="about-tag">About Project</span>
+
+        <h1 class="about-heading">
+            Building <span>Modern Web Experiences</span> with Django
+        </h1>
+
+        <p class="about-description">
+            This Django project focuses on delivering a fast, scalable, and user-friendly
+            web application using industry-standard development practices and modern UI design.
+        </p>
+
+        <div class="about-cards">
+            <div class="about-card">
+                <h3>🚀 Performance</h3>
+                <p>Optimized backend logic and efficient database queries for speed.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>🔐 Security</h3>
+                <p>Built-in Django authentication and secure data handling.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>🎨 UI / UX</h3>
+                <p>Minimal, responsive, and modern design for better usability.</p>
+            </div>
+        </div>
+
+        <p class="about-note">
+            Crafted with Django, HTML5, CSS3, and best coding practices.
+        </p>
+
+    </div>
+</section>
 {% endblock %}
