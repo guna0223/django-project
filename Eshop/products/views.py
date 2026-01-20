@@ -4,10 +4,27 @@ from .models import Product
 # Create your views here.
 
 def productView(request):
-    template = 'product/product.html'
+    template = 'products/products.html'
     context = {
         'products': Product.objects.all(),
         'current_page' : 'products'
         
     }
+    return render(request, template_name= template, context=context)
+
+# search products
+from django.db.models import Q
+def searchProducts(request):
+    
+    template = 'products/search_results.html' 
+    query = request.GET.get('query_text')
+    if query:
+        search_results = Product.objects.filter (
+            Q(title__icontains = query) |
+            Q(desc__icontains = query)
+        )
+        context = {
+            'query' : query,
+            'products' : search_results
+        }
     return render(request, template_name= template, context=context)

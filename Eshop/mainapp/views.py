@@ -7,7 +7,7 @@ def homeView(request):
     context = {
         'current_page':'home',
         # Let's collext all existing records of carousel image to be send to template
-        'carousel_images' : CarouselImage.objects.all() # select * from carousel_images
+        'carousel_images' : CarouselImage.objects.all(), # select * from carousel_images
     }
 
     return render(request, template_name= template, context= context)

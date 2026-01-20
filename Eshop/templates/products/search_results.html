@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+Search results for {{query}}
+{% endblock %}
+
+{% block content %}
+
+<h2>
+    Searh results for : <span>{{query}}</span>
+</h2>
+<section>
+    <div>
+        {% include 'products/includes/productsection.html'%}
+    </div>
+</section>
+{% endblock %}
