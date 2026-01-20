@@ -4,8 +4,13 @@
         <div class="card-body text-center">
             <h5 class="card-title">{{ product.title }}</h5>
             <p class="card-text product-desc">{{ product.desc }}</p>
-            <p class="card-text product-price">$ {{ product.price }}</p>
-            <a href="#" class="btn btn-primary w-100">Add to Cart</a>
+            <p class="card-text product-price text-secondary">&#8377;
+                {{ product.price }}
+                <span class="card-text product- discount text-success ">
+                   off %{{ product.discount}}
+                </span>
+            </p>
+            <a href="#" class="btn btn-secondary w-100">Add to Cart</a>
         </div>
     </div>
 </div>
