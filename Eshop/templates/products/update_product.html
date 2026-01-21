@@ -6,14 +6,33 @@ Edit Product
 
 {% block content %}
 
-<section>
-    <div>
-        <form  method="post" enctype="multipart/form-data">
+<section class="edit-product-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6">
+                <div class="edit-product-card shadow-sm">
 
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">SAVE</button>
-        </form>
+                    <div class="edit-product-header">
+                        <h4 class="mb-0">Edit Product</h4>
+                    </div>
+
+                    <div class="edit-product-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
 {% endblock %}

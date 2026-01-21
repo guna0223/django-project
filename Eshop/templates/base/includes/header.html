@@ -1,7 +1,13 @@
+{% load static %}
 <header>
     <nav class="navbar navbar-expand-lg bg-dark " data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home_page' %}">Game Box</a>
+
+            <a class="navbar-brand" href="{% url 'home_page' %}">
+
+                <img src="{% static 'images/icons/headericon/nav-img.png' %}" alt="" height="40px" width="40px">
+            </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -36,9 +42,9 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <form class="d-flex" role="search" method="get" action="{% url 'search_products' %}">
                     <input 

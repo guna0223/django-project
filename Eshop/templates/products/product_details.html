@@ -26,9 +26,19 @@ Product Details
                     {{ product.desc }}
                 </p>
 
-                <p class="product-price mt-3">
-                    &#8377; {{ product.price }}
-                </p>
+                <div>
+                    <span class="card-text product-price text-secondary" style="text-decoration: line-through;">&#8377;
+                        {{ product.price }}
+                    </span>
+
+                    <span class="text-primary fw-bold" style="margin:auto 10px">
+                        &#8377; {{ product.offer_price|floatformat:2 }}
+                    </span>
+
+                    <span class="card-text  text-success ">
+                        off %{{ product.discount}}
+                    </span>
+                </div>
 
                 <div class="d-flex flex-wrap gap-3 mt-4">
                     <a href="#" class="btn btn-outline-primary px-4">

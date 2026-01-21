@@ -10,14 +10,22 @@
                 </h5>
 
                 <p class="card-text product-desc">{{ product.desc }}</p>
-                <p class="card-text product-price text-secondary">&#8377;
-                    {{ product.price }}
-                    <span class="card-text product- discount text-success ">
+                <div>
+                    <span class="card-text product-price text-secondary" style="text-decoration: line-through;">&#8377;
+                        {{ product.price }}
+                    </span>
+
+                    <span class="text-primary fw-bold" style="margin:auto 10px">
+                        &#8377; {{ product.offer_price|floatformat:2 }}
+                    </span>
+
+                    <span class="card-text  text-success ">
                         off %{{ product.discount}}
                     </span>
-                </p>
+                </div>
+
             </a>
-            <a href="#" class="btn btn-secondary w-100">Add to Cart</a>
+            <a href="#" class="btn btn-secondary w-100 mt-4">Add to Cart</a>
         </div>
     </div>
 </div>
