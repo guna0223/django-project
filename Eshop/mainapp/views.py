@@ -9,7 +9,7 @@ def homeView(request):
         'current_page':'home',
         # Let's collext all existing records of carousel image to be send to template
         'carousel_images' : CarouselImage.objects.all(), # select * from carousel_images
-        'products': Product.objects.all()
+        'products': Product.objects.all() # show all product card in home page
     }
 
     return render(request, template_name= template, context= context)
