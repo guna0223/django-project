@@ -21,6 +21,7 @@ class Product(models.Model):
     
 class ProductImage(models.Model):
     img = models.ImageField(upload_to='product/images/')
+    video = models.FileField(upload_to='products/videos',null=True)
     caption = models.CharField(max_length=200, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     created_at = models.DateTimeField(auto_now_add=True)

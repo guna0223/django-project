@@ -32,7 +32,7 @@ def searchProducts(request):
 # CRUD Operations using Generic Class Based Views of Django
 
 from django.views.generic import (CreateView,DetailView,
-                                  UpdateView,DeleteView,AddProductImage)
+                                  UpdateView,DeleteView,)
 
 # ListView has already been implemented using a function a function above : producstView()
 
@@ -43,10 +43,10 @@ class CreateProduct(CreateView):
     # redirection url for successful creation of resource
     success_url = '/'
 
-class AddProductImage(AddProductImage):
+class AddProductImage(CreateView):
     model = Product
     template_name = "products/add_images.html"
-    filds = "__all__"
+    fields = "__all__"
     
     success_url = '/'
 
@@ -76,3 +76,30 @@ class DeleteProduct(DeleteView):
      success_url = '/'
     
     
+
+# chat gpt code
+from django.shortcuts import get_object_or_404, redirect
+from .models import Product, ProductImage
+from .forms import ProductImageForm
+
+def add_product_image(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+
+    if request.method == 'POST':
+        form = ProductImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            media = form.save(commit=False)
+            media.product = product
+            media.save()
+            return redirect('product_details', pk=pk)
+    else:
+        form = ProductImageForm()
+
+    return render(
+        request,
+        'products/add_images.html',
+        {
+            'form': form,
+            'product': product
+        }
+    )
