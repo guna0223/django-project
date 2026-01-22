@@ -1,33 +1,38 @@
-<div>
+<div class="product-card-wrapper">
     <div class="card product-card">
-        <a href="{% url 'product_details' product.pk %}" class="product_details-link">
-            <img src="{{ product.thumbnail.url }}" class="card-img-top" alt="{{ product.title }}">
+
+        <a href="{% url 'product_details' product.pk %}" class="product-link">
+            <img src="{{ product.thumbnail.url }}"
+                 class="card-img-top"
+                 alt="{{ product.title }}">
         </a>
 
         <div class="card-body text-center">
 
-            <a href="{% url 'product_details' product.pk %}" class="product_details-link">
-                <h5 class="card-title">
-                    {{ product.title }}
-                </h5>
+            <a href="{% url 'product_details' product.pk %}" class="product-link">
+                <h5 class="product-title" style="font-size: 20px;">{{ product.title }}</h5>
 
-                <p class="card-text product-desc">{{ product.desc }}</p>
-                <div>
-                    <span class="card-text product-price text-secondary" style="text-decoration: line-through;">&#8377;
-                        {{ product.price }}
+                <p class="product-desc">{{ product.desc }}</p>
+
+                <div class="price-box">
+                    <span class="old-price">
+                        &#8377; {{ product.price }}
                     </span>
 
-                    <span class="text-primary fw-bold" style="margin:auto 10px">
+                    <span class="new-price">
                         &#8377; {{ product.offer_price|floatformat:2 }}
                     </span>
 
-                    <span class="card-text  text-success ">
-                        off %{{ product.discount}}
+                    <span class="discount">
+                        {{ product.discount }}% off
                     </span>
                 </div>
-
             </a>
-            <a href="#" class="btn btn-secondary w-100 mt-4">Add to Cart</a>
+
+            <a href="#" class="btn btn-secondary add-to-cart-btn mt-3">
+                Add to Cart
+            </a>
+
         </div>
     </div>
 </div>

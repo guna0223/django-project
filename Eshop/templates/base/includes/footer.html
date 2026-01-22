@@ -1,3 +1,42 @@
-<footer class="bg-dark text-light fixed-bottom text-center h-30 w-100">
-    &copy hello bro 2026
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+
+            <!-- BRAND -->
+            <div class="col-md-4 mb-3">
+                <h5 class="footer-title">GameBox</h5>
+                <p class="footer-text">
+                    A modern Django-powered platform for discovering, managing,
+                    and showcasing products with a clean UI experience.
+                </p>
+            </div>
+
+            <!-- QUICK LINKS -->
+            <div class="col-md-4 mb-3">
+                <h6 class="footer-title">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="{% url 'about_page' %}">About</a></li>
+                    <li><a href="{% url 'contact_page' %}">Contact</a></li>
+                    <li><a href="{% url 'product_page' %}">Products</a></li>
+                </ul>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="col-md-4 mb-3">
+                <h6 class="footer-title">Contact</h6>
+                <p class="footer-text">📍 India</p>
+                <p class="footer-text">📧 support@example.com</p>
+                <p class="footer-text">📞 +91 98765 43210</p>
+            </div>
+
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+            <span>© 2026 GameBox. All rights reserved.</span>
+            <span>Built with ❤️ using Django</span>
+        </div>
+    </div>
 </footer>
