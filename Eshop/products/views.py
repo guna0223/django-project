@@ -32,7 +32,7 @@ def searchProducts(request):
 # CRUD Operations using Generic Class Based Views of Django
 
 from django.views.generic import (CreateView,DetailView,
-                                  UpdateView,DeleteView)
+                                  UpdateView,DeleteView,AddProductImage)
 
 # ListView has already been implemented using a function a function above : producstView()
 
@@ -43,9 +43,22 @@ class CreateProduct(CreateView):
     # redirection url for successful creation of resource
     success_url = '/'
 
+class AddProductImage(AddProductImage):
+    model = Product
+    template_name = "products/add_images.html"
+    filds = "__all__"
+    
+    success_url = '/'
+
 class ProductDetail(DetailView):
      model = Product
      template_name = 'products/product_details.html'
+     context_object_name = 'product'
+     
+    #  overriding the quey\ryset to pre-fetch and the product images alongside produucts
+    
+     def get_queryset(self):
+        return Product.objects.prefetch_related('images')
      
     
 
@@ -61,4 +74,5 @@ class DeleteProduct(DeleteView):
      template_name = 'products/delete_product.html'
      fields = '__all__'
      success_url = '/'
+    
     

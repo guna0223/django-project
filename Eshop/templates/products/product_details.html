@@ -8,50 +8,63 @@ Product Details
 
 <section class="product-details-section py-5">
     <div class="container">
-        <div class="row align-items-center g-4">
+        <div class="row align-items-center g-5">
 
-            <!-- Product Image -->
-            <div class="col-md-6">
-                <div class="product-image-wrapper">
-                    <img src="{{ product.thumbnail.url }}" class="img-fluid rounded shadow-sm"
-                        alt="{{ product.title }}">
+
+            <div class="col-md-7">
+                <div id="carouselExample" class="carousel slide product-carousel">
+                    <div class="carousel-inner">
+
+                        {% for image in product.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.img.url }}" class="d-block w-100" alt="product image">
+
+                            <div class="carousel-btn">
+                                <button class="btn text-secondary edit"><i class="bi bi-pen"></i></button>
+                            </div>
+                            <div class="delete-btn">
+                                <button class="btn text-danger delete"><i class="bi bi-x-lg"></i></button>
+                            </div>
+
+
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
                 </div>
             </div>
 
-            <!-- Product Info -->
-            <div class="col-md-6">
-                <h2 class="product-title">{{ product.title }}</h2>
 
-                <p class="product-desc mt-3">
-                    {{ product.desc }}
-                </p>
-
-                <div>
-                    <span class="card-text product-price text-secondary" style="text-decoration: line-through;">&#8377;
-                        {{ product.price }}
-                    </span>
-
-                    <span class="text-primary fw-bold" style="margin:auto 10px">
-                        &#8377; {{ product.offer_price|floatformat:2 }}
-                    </span>
-
-                    <span class="card-text  text-success ">
-                        off %{{ product.discount}}
-                    </span>
-                </div>
-
-                <div class="d-flex flex-wrap gap-3 mt-4">
-                    <a href="#" class="btn btn-outline-primary px-4">
-                        Add to Cart
-                    </a>
-
-                    <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning px-4">
-                        Edit
-                    </a>
-
-                    <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger px-4">
-                        Delete
-                    </a>
+            <div class="col-md-5">
+                <div class="product-info">
+                    <div class="thumbnail-wrapper mb-4 text-center">
+                        <img src="{{ product.thumbnail.url }}" alt="{{ product.title }}">
+                    </div>
+                    <h2 class="product-title">{{ product.title }}</h2>
+                    <p class="product-desc mt-3">
+                        {{ product.desc }}
+                    </p>
+                    <div class="price-box my-3">
+                        <span class="old-price">&#8377; {{ product.price }}</span>
+                        <span class="new-price">&#8377; {{ product.offer_price|floatformat:2 }}</span>
+                        <span class="discount text-success">({{ product.discount }}% OFF)</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="#" class="btn btn-outline-primary px-4">Add to Cart</a>
+                        <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning px-4">Edit</a>
+                        <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger px-4">Delete</a>
+                        <a href="{% url 'add_images' product.pk %}">Add Images</a>
+                    </div>
                 </div>
             </div>
 
