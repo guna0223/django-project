@@ -85,11 +85,13 @@ Product Details
                     {% endfor %}
 
                     <div class="action-buttons mt-4">
-                        <a href="#" class="btn btn-outline-primary">Add to Cart</a>
-                        <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning">Edit</a>
-                        <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">Delete</a>
+                        <a href="#" class="btn btn-outline-primary"><i class="bi bi-cart"></i></a>
+                        <a href="{% url 'edit_product' product.pk %}" class="btn btn-warning"><i
+                                class="bi bi-pencil-fill"></i></a>
+                        <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger"><i
+                                class="bi bi-trash3-fill"></i></a>
                         <a href="{% url 'add_images' product.id %}" class="btn btn-outline-secondary">
-                            Add Media
+                            <i class="bi bi-cloud-plus-fill"></i>
                         </a>
                     </div>
 

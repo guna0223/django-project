@@ -49,33 +49,30 @@ class AddProductImage(CreateView):
     fields = "__all__"
     
     success_url = '/'
-
-class ProductDetail(DetailView):
-     model = Product
-     template_name = 'products/product_details.html'
-     context_object_name = 'product'
-     
-    #  overriding the quey\ryset to pre-fetch and the product images alongside produucts
     
-     def get_queryset(self):
+
+from django.views.generic.edit import FormMixin
+# this mixin provides ability to render forms from the `from_class`
+from .forms import ProductImageForm
+
+class ProductDetail( FormMixin ,DetailView):
+    model = Product
+    template_name = 'products/product_details.html'
+    context_object_name = 'product'
+    # providing form class for product image
+    form_class = ProductImageForm
+     
+    #  overriding the quey\ryset to pre-fetch and 
+    #   the product images alongside produucts
+    
+    def get_queryset(self):
         return Product.objects.prefetch_related('images')
-     
     
-
-class UpdateProduct(UpdateView):
-     model = Product
-     template_name = 'products/update_product.html'
-     fields = '__all__'
-     success_url = '/'
-    
-
-class DeleteProduct(DeleteView):
-     model = Product
-     template_name = 'products/delete_product.html'
-     fields = '__all__'
-     success_url = '/'
-    
-    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['abcd'] = 'yuhooo'
+        
+        return context
 
 # chat gpt code
 from django.shortcuts import get_object_or_404, redirect
@@ -103,3 +100,21 @@ def add_product_image(request, pk):
             'product': product
         }
     )
+
+     
+    
+
+class UpdateProduct(UpdateView):
+     model = Product
+     template_name = 'products/update_product.html'
+     fields = '__all__'
+     success_url = '/'
+    
+
+class DeleteProduct(DeleteView):
+     model = Product
+     template_name = 'products/delete_product.html'
+     fields = '__all__'
+     success_url = '/'
+    
+    

@@ -9,7 +9,6 @@ class ProductImageForm(forms.ModelForm):
     def clean(self):
         cleaned_date = super().clean()
         img = cleaned_date.get('img')
-
         
         if not img:
             raise forms.ValidationError("please upload an image")
