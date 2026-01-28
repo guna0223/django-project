@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect # redirect is to redrect to new page 
+from django.urls import reverse # 
 from .models import Product
 
 # Create your views here.
@@ -62,53 +63,31 @@ class ProductDetail( FormMixin ,DetailView):
     # providing form class for product image
     form_class = ProductImageForm
      
+    def get_success_url(self):
+        return reverse('product_details', kwargs={'pk':self.object.pk})
     #  overriding the quey\ryset to pre-fetch and 
     #   the product images alongside produucts
     
     def get_queryset(self):
         return Product.objects.prefetch_related('images')
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['abcd'] = 'yuhooo'
+    def post(self,request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
         
-        return context
-
-# chat gpt code
-from django.shortcuts import get_object_or_404, redirect
-from .models import Product, ProductImage
-from .forms import ProductImageForm
-
-def add_product_image(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-
-    if request.method == 'POST':
-        form = ProductImageForm(request.POST, request.FILES)
         if form.is_valid():
-            media = form.save(commit=False)
-            media.product = product
-            media.save()
-            return redirect('product_details', pk=pk)
-    else:
-        form = ProductImageForm()
-
-    return render(
-        request,
-        'products/add_images.html',
-        {
-            'form': form,
-            'product': product
-        }
-    )
-
-     
-    
-
+            image = form.save(commit = False)
+            image.product = self.object
+            image.save()
+            
+            return redirect(self.get_success_url())
+        
 class UpdateProduct(UpdateView):
      model = Product
      template_name = 'products/update_product.html'
      fields = '__all__'
      success_url = '/'
+
     
 
 class DeleteProduct(DeleteView):
@@ -116,5 +95,30 @@ class DeleteProduct(DeleteView):
      template_name = 'products/delete_product.html'
      fields = '__all__'
      success_url = '/'
+     
+    
+
+# Edit Product Image
+from .models import ProductImage
+
+class EditProductImage(UpdateView):
+    model = ProductImage
+    template_name = 'products/image_edit.html'
+    fields = ['img','caption']
+    context_object_name = 'image'
+    
+    def get_success_url(self):
+        return reverse('product_details', kwargs={'pk':self.object.product.pk})
+    
+
+class DeleteProductImage(DeleteView):
+    model = ProductImage
+    template_name = 'products/image_del.html'
+    context_object_name = 'image'
+    
+    def get_success_url(self):
+        return reverse('product_details', kwargs={'pk':self.object.product.pk})
+
+
     
     

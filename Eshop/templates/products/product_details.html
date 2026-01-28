@@ -22,12 +22,13 @@ Product Details
                             <img src="{{ media.img.url }}" class="d-block w-100" alt="{{ media.caption }}">
 
                             <div class="carousel-actions">
-                                <button class="btn btn-light edit">
+                                <!-- edit and delete image  -->
+                                <a href="{% url 'edit_prod_image' media.pk %}" class="btn btn-light edit">
                                     <i class="bi bi-pen"></i>
-                                </button>
-                                <button class="btn btn-light delete text-danger">
+                                </a>
+                                <a href="{% url 'del_prod_image' media.pk %}" class="btn btn-light delete text-danger">
                                     <i class="bi bi-x-lg"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                         {% endif %}
@@ -100,6 +101,16 @@ Product Details
 
         </div>
     </div>
+</section>
+
+<section>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">
+            Add Media
+        </button>
+    </form>
 </section>
 
 {% endblock %}
